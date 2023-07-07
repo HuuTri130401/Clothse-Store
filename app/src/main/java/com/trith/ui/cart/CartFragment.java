@@ -1,17 +1,14 @@
-package com.trith.ui.slideshow;
+package com.trith.ui.cart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.trith.R;
-import com.trith.databinding.FragmentSlideshowBinding;
 
 public class SlideshowFragment extends Fragment {
 
