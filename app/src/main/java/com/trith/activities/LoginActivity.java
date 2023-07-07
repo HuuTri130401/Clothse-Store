@@ -1,4 +1,4 @@
-package com.trith;
+package com.trith.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.trith.MainActivity;
+import com.trith.R;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.trith;
+package com.trith.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.trith.R;
 import com.trith.models.UserModel;
 
 public class RegistrationActivity extends AppCompatActivity {

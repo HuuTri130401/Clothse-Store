@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.trith.R;
 
-public class Profile extends Fragment {
+public class ProfileFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
