@@ -1,4 +1,4 @@
-package com.trith;
+package com.trith.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.trith.R;
+import com.trith.activities.RegistrationActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
     ProgressBar progressBar;
