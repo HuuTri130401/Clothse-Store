@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "868886697935",
+    "project_id": "clothes-store-98678",
+    "storage_bucket": "clothes-store-98678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868886697935:android:8e4f46ebf02cacdcc024ba",
+        "android_client_info": {
+          "package_name": "com.trith"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868886697935-f6rh941ccaqef820ghgck502ja4oqgv7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnPVkklz-Bnk4nJ0YdAajYQEhfeu0lPzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868886697935-f6rh941ccaqef820ghgck502ja4oqgv7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
