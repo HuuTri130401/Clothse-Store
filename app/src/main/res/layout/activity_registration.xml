@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.1" />
 
     <TextView
         android:id="@+id/textView5"
@@ -45,49 +45,96 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/txtFullName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:drawableLeft="@drawable/baseline_account_box_24"
         android:drawablePadding="10dp"
         android:hint="Full Name"
-        android:textColorHint="#ABFBFBFB"
+        android:textColor="@color/white"
+        android:textColorHint="#6CFBFBFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/txtEmail"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="10dp"
         android:hint="Email"
-        android:textColorHint="#ABFBFBFB"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#6CFBFBFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/txtFullName"
         app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/txtPassword"
+        android:textColor="@color/white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/baseline_vpn_key_24"
         android:drawablePadding="10dp"
         android:hint="Password"
-        android:textColorHint="#ABFBFBFB"
+        android:inputType="textPassword"
+        android:textColorHint="#6CFBFBFB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
         app:layout_constraintWidth_percent=".8" />
 
+    <EditText
+        android:id="@+id/txtAddress"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_add_location_24"
+        android:drawablePadding="10dp"
+        android:hint="Address"
+        android:textColorHint="#6CFBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:textColor="@color/white"
+        android:layout_width="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_contact_phone_24"
+        android:drawablePadding="10dp"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textColorHint="#6CFBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddress"
+        app:layout_constraintWidth_percent=".8" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone" />
+
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button"
@@ -97,8 +144,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
-        app:layout_constraintVertical_bias=".6"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhone"
         app:layout_constraintWidth_percent=".8" />
 
     <TextView
@@ -113,21 +159,21 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
     <TextView
+        android:id="@+id/tvLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text=" Login"
-        android:onClick="testNavigation"
         android:textColor="#FBFBFB"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintHorizontal_bias="0"
         />
 
