@@ -1,16 +1,21 @@
 package com.trith.models;
 
-public class ProductModel {
+import java.io.Serializable;
+
+public class ProductModel implements Serializable {
     private String image;
     private String name;
-    private String price;
+    private int price;
     private String type;
+    private String description;
 
 
-    public ProductModel(String image, String name, String price) {
+    public ProductModel(String image, String name, int price, String type, String description) {
         this.image = image;
         this.name = name;
         this.price = price;
+        this.type = type;
+        this.description = description;
     }
 
     public ProductModel() {
@@ -32,11 +37,27 @@ public class ProductModel {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,7 +48,10 @@ public class HomeFragment extends Fragment  {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
         db = FirebaseFirestore.getInstance();
+
+
 
         progressBar = root.findViewById(R.id.progressBar);
         scrollView = root.findViewById(R.id.scrollView);
@@ -56,7 +62,7 @@ public class HomeFragment extends Fragment  {
         categoryRec = root.findViewById(R.id.home_hor_rec);
         categoryRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         categoryModelList = new ArrayList<>();
-        categoryAdapter = new CategoryAdapter(getActivity(), categoryModelList);
+        categoryAdapter = new CategoryAdapter(getActivity(), this, categoryModelList);
         categoryRec.setAdapter(categoryAdapter);
         db.collection("Category")
                 .get()
@@ -104,4 +110,6 @@ public class HomeFragment extends Fragment  {
                 });
         return root;
     }
+
+
 }
