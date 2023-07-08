@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,22 +16,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.trith.R;
 import com.trith.adapters.CategoryAdapter;
 import com.trith.adapters.ProductAdapter;
-import com.trith.adapters.UpdateProductRec;
 import com.trith.models.CategoryModel;
 import com.trith.models.ProductModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment  {
 
+    ScrollView scrollView;
+    ProgressBar progressBar;
     RecyclerView categoryRec, productRec;
 
     FirebaseFirestore db;
@@ -46,8 +47,12 @@ public class HomeFragment extends Fragment  {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         db = FirebaseFirestore.getInstance();
 
-        //Category
+        progressBar = root.findViewById(R.id.progressBar);
+        scrollView = root.findViewById(R.id.scrollView);
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
 
+        //Category
         categoryRec = root.findViewById(R.id.home_hor_rec);
         categoryRec.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         categoryModelList = new ArrayList<>();
@@ -63,6 +68,9 @@ public class HomeFragment extends Fragment  {
                                 CategoryModel categoryModel =  document.toObject(CategoryModel.class);
                                 categoryModelList.add(categoryModel);
                                 categoryAdapter.notifyDataSetChanged();
+
+                                progressBar.setVisibility(View.GONE);
+                                scrollView.setVisibility(View.VISIBLE);
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_LONG).show();
@@ -84,9 +92,9 @@ public class HomeFragment extends Fragment  {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                CategoryModel categoryModel =  document.toObject(CategoryModel.class);
-                                categoryModelList.add(categoryModel);
-                                categoryAdapter.notifyDataSetChanged();
+                                ProductModel productModel =  document.toObject(ProductModel.class);
+                                productModelList.add(productModel);
+                                productAdapter.notifyDataSetChanged();
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error" + task.getException(), Toast.LENGTH_LONG).show();

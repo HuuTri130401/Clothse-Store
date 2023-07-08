@@ -1,21 +1,26 @@
 package com.trith.models;
 
 public class ProductModel {
-    private int image;
+    private String image;
     private String name;
     private String price;
+    private String type;
 
-    public ProductModel(int image, String name, String price) {
+
+    public ProductModel(String image, String name, String price) {
         this.image = image;
         this.name = name;
         this.price = price;
     }
 
-    public int getImage() {
+    public ProductModel() {
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
