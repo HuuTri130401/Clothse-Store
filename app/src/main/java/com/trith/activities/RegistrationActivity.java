@@ -48,7 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
         email = findViewById(R.id.txtEmail);
         password = findViewById(R.id.txtPassword);
         address = findViewById(R.id.txtAddress);
-        phone = findViewById(R.id.txtPassword);
+        phone = findViewById(R.id.txtPhone);
 
         tvLogin = findViewById(R.id.tvLogin);
         tvLogin.setOnClickListener(new View.OnClickListener() {

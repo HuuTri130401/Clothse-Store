@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.trith.R;
@@ -26,6 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
+//        auth = FirebaseAuth.getInstance();
 //        if(auth.getCurrentUser() != null){
 //            progressBar.setVisibility(View.VISIBLE);
 //            Toast.makeText(this, "Plase wait, you are already logged in !", Toast.LENGTH_SHORT).show();
