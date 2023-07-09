@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/medium_grey"
+        android:background="#FF2D2F31"
         android:padding="8dp"
         android:orientation="vertical">
 
@@ -121,7 +121,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="18sp"
-                android:fontFamily="@font/alice"
                 android:text="Current time"
                 android:textColor="@color/white"/>
 
