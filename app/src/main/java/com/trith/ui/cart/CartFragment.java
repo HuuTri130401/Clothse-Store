@@ -1,9 +1,15 @@
 package com.trith.ui.cart;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +18,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -73,8 +83,13 @@ public class CartFragment extends Fragment {
                                 orderDetailModelList.add(orderDetailModel);
                                 cartAdapter.notifyDataSetChanged();
                             }
-
                             calculateTotalAmount(orderDetailModelList);
+
+                            // Show notification if cart has products
+                            if (!orderDetailModelList.isEmpty()) {
+                                showCartNotification(getContext(), orderDetailModelList.size());
+                            }
+
                         }
                     }
                 });
@@ -99,6 +114,47 @@ public class CartFragment extends Fragment {
         totalOrderPrice.setText("Total amount" + totalAmount);
 
     }
+    private void showCartNotification(Context context, int productCount) {
+        // Check for permission
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+            // Request permission
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.VIBRATE}, 1);
+            return;
+        }
 
+        // Create notification channel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "cart_notification_channel";
+            CharSequence channelName = "Cart Notification";
+            String channelDescription = "Notification for Cart";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            channel.setDescription(channelDescription);
+
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create notification
+        String notificationTitle = "Cart Notification";
+        String notificationText = "You have " + productCount + " product(s) in your cart";
+        int notificationId = 1;
+
+        Intent intent = new Intent(context, CartFragment.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "cart_notification_channel")
+                .setSmallIcon(R.drawable.notification_cart)
+                .setContentTitle(notificationTitle)
+                .setContentText(notificationText)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(notificationId, builder.build());
+    }
 
 }
