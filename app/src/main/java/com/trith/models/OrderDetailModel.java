@@ -3,13 +3,13 @@ package com.trith.models;
 import java.io.Serializable;
 
 public class OrderDetailModel implements Serializable {
-    String productName;
-    String quantity;
-    int total;
-    String currentDate;
-    String currentTime;
+    private String productName;
+    private String quantity;
+    private int total;
+    private String currentDate;
+    private String currentTime;
 
-    String dcocumentId;
+    private String dcocumentId;
 
     public OrderDetailModel() {
     }

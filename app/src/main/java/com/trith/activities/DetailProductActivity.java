@@ -105,6 +105,8 @@ public class DetailProductActivity extends AppCompatActivity {
         String saveCurrentDate, saveCurrentTime;
         Calendar calForDate = Calendar.getInstance();
 
+        totalPrice = productModel.getPrice() * totalQuantity;
+
         SimpleDateFormat currentDate = new SimpleDateFormat("MM, dd, yyyy");
         saveCurrentDate = currentDate.format(calForDate.getTime());
 

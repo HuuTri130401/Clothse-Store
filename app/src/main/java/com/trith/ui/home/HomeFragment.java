@@ -1,10 +1,13 @@
 package com.trith.ui.home;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -19,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -43,6 +47,9 @@ public class HomeFragment extends Fragment  {
     ArrayList<ProductModel> productModelList;
 
     ProductAdapter productAdapter;
+
+    EditText searchBox;
+    RecyclerView recyclerViewSearch;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -106,7 +113,51 @@ public class HomeFragment extends Fragment  {
                         }
                     }
                 });
+
+        searchBox = root.findViewById(R.id.et_search);
+            searchBox.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (s.toString().isEmpty()) {
+
+                    } else {
+                        searchProduct(s.toString());
+                    }
+                }
+            });
+
+
         return root;
+    }
+
+    private void searchProduct(String type) {
+        if (!type.isEmpty()) {
+            db.collection("Product").whereEqualTo("type", type).get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful() && task.getResult() != null) {
+                                productModelList.clear();
+                                productAdapter.notifyDataSetChanged();
+                                for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                                    ProductModel productModel = doc.toObject(ProductModel.class);
+                                    productModelList.add(productModel);
+                                    productAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+                    });
+        }
     }
 
 

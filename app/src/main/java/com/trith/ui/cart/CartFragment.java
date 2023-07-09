@@ -54,8 +54,6 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         totalOrderPrice = root.findViewById(R.id.totalOrderPrice);
-        LocalBroadcastManager.getInstance(getActivity())
-                .registerReceiver(mMessageReceiver, new IntentFilter("totalOrderPrice"));
 
         orderDetailModelList = new ArrayList<>();
         cartAdapter = new CartAdapter(getActivity(), orderDetailModelList);
@@ -75,6 +73,8 @@ public class CartFragment extends Fragment {
                                 orderDetailModelList.add(orderDetailModel);
                                 cartAdapter.notifyDataSetChanged();
                             }
+
+                            calculateTotalAmount(orderDetailModelList);
                         }
                     }
                 });
@@ -91,12 +91,14 @@ public class CartFragment extends Fragment {
         return root;
     }
 
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int totalBill = intent.getIntExtra("totalOrderPrice", 0);
-            totalOrderPrice.setText("Total Bill: $" + totalBill);
+    private void calculateTotalAmount(List<OrderDetailModel> orderDetailModelList) {
+        double totalAmount = 0.0;
+        for (OrderDetailModel orderDetailModel : orderDetailModelList) {
+            totalAmount += orderDetailModel.getTotal();
         }
-    };
+        totalOrderPrice.setText("Total amount" + totalAmount);
+
+    }
+
 
 }
