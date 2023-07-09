@@ -25,5 +25,10 @@
             android:id="@+id/nav_category"
             android:icon="@drawable/baseline_category_24"
             android:title="Category" />
+
+        <item
+            android:id="@+id/nav_location"
+            android:icon="@drawable/baseline_add_location_24"
+            android:title="Location" />
     </group>
 </menu>

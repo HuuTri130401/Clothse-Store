@@ -37,12 +37,12 @@ public class HomeFragment extends Fragment  {
     RecyclerView categoryRec, productRec;
 
     FirebaseFirestore db;
-     ArrayList<CategoryModel> categoryModelList;
-     CategoryAdapter categoryAdapter;
+    ArrayList<CategoryModel> categoryModelList;
+    CategoryAdapter categoryAdapter;
 
-     ArrayList<ProductModel> productModelList;
+    ArrayList<ProductModel> productModelList;
 
-     ProductAdapter productAdapter;
+    ProductAdapter productAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,8 +50,6 @@ public class HomeFragment extends Fragment  {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         db = FirebaseFirestore.getInstance();
-
-
 
         progressBar = root.findViewById(R.id.progressBar);
         scrollView = root.findViewById(R.id.scrollView);
