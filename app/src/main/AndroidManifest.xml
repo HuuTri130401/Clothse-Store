@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ClothesStore"
         tools:targetApi="31">
         <activity
+            android:name=".activities.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.DetailProductActivity"
             android:exported="false" />
         <activity
@@ -40,7 +43,11 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.ClothesStore.NoActionBar"></activity>
+            android:theme="@style/Theme.ClothesStore.NoActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
