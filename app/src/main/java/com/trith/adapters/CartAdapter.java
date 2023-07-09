@@ -76,6 +76,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             }
         });
 
+        holder.deleteItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                        .collection("Order")
+                        .document(list.get(position).getDcocumentId())
+                        .delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    list.remove(list.get(position));
+                                    notifyDataSetChanged();
+                                    Toast.makeText(context, "Item deleted", Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(context, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+
 
 
     }
